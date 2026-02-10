@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, FormEvent } from 'react';
 import { socket } from '../socket';
+import {base_url} from "../constant";
 
 // Define the shape of each message
 interface Message {
@@ -58,7 +59,7 @@ export default function Home() {
         const user = getCurrentUser();
         if (user?.id) {
             setLoadingContacts(true);
-            fetch(`http://localhost:5000/api/contacts/${user.id}`)
+            fetch(`${base_url}/api/contacts/${user.id}`)
                 .then((res) => {
                     if (!res.ok) throw new Error('Failed to fetch contacts');
                     return res.json();
